@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Synopsis
-In this analysis, I have evaluated the feasibility of using a classifier for detecting the correct perfomance of barbell lifts. 
+In this analysis, I have evaluated the feasibility of using a classifier for detecting the correct performance of barbell lifts. 
 
 ## Loading data
 
@@ -78,13 +78,13 @@ train_control <- trainControl(method="cv", number=10)
 #modelRF<-train(classe~.,data=trainTransformed,trainControl=train_control,method="rf")
 confusionMatrix(modelRF)
 ```
-This method achieved a high accuracy (90%) so I selected this method for predicting the new data. 
+This method achieved a high accuracy (99%) so I selected this method for predicting the new data. 
 
 ## Predicting New Data
 
 We predict the new data using the best predictor which was obtained using "Random Forest" and we obtain the following predictions:
 ```{r Prediction of testing data, echo=TRUE}
-predictions<-predict(modelRF,newdata=testing)
+predictions<-predict(modelRF,newdata=testTransformed)
 plot(1:length(predictions),predictions,xlab="Predictions",ylab="Class", yaxt="n")
 axis(2,at=1:5,labels=letters[1:5])
 predictions
